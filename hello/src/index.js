@@ -1,34 +1,1 @@
-
-var Hello = React.createClass({
-	render: function(){
-		return (
-			<h1>Hello React</h1>
-			);
-	}
-});
-React.render(<Hello/>, document.getElementById('div1'));
-
-
-var HelloProps = React.createClass({
-	render: function(){
-		return (
-			<h1>Hello {this.props.name}</h1>
-			);
-	}
-});
-React.render(<HelloProps name='pony'/>, document.getElementById('div2'));
-
-
-var QianTao = React.createClass({
-	render: function(){
-		return (
-			<div>
-				<p>嵌套与组合</p>
-				<HelloProps name='QianTao'/>
-				<Hello></Hello>
-			</div>
-			);
-	}
-});
-React.render(<QianTao/>, document.getElementById('div3'));
-
+var Hello = React.createClass({	render: function(){		return (			<h1>Hello React</h1>			);	}});React.render(<Hello/>, document.getElementById('div1'));var HelloProps = React.createClass({	render: function(){		return (			<h1>Hello {this.props.name}</h1>			);	}});React.render(<HelloProps name='pony'/>, document.getElementById('div2'));var QianTao = React.createClass({	render: function(){		return (			<div>				<p>component组合</p>				<HelloProps name='QianTao'/>				<Hello></Hello>			</div>			);	}});React.render(<QianTao/>, document.getElementById('div3'));var HelloLife = React.createClass({	getInitialState: function(){		return {defaultState: 'defaultState'};	},	getDefaultProps: function(){		return {defaultName:'defaultName'};	},	render: function(){		return (			<h1>Hello {this.props.name}, {this.props.defaultName}, {this.state.defaultState}</h1>			);	}});React.render(<HelloLife name='settedName'/>, document.getElementById('div4'));var HelloEvent = React.createClass({	getInitialState: function(){		return {defaultState: 'defaultState'};	},	getDefaultProps: function(){		return {defaultName:'defaultName'};	},	onButtonClicked: function(){		this.setState({clickInfo:'you clicked '+new Date()});	},	render: function(){		return (				<div>					<h1>事件</h1>					<button onClick={this.onButtonClicked}>click me</button>					<h1>Hello {this.props.name}, {this.props.defaultName}, {this.state.defaultState}</h1>					<p style={{color:'red'}}>{this.state.clickInfo}</p>				</div>			);	}});React.render(<HelloEvent name='settedName'/>, document.getElementById('div5'));
